@@ -1,26 +1,26 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <map>
 #include <vector>
 #include <string>
 #include <fstream>
 
 /*
-* приют для собак
+* РїСЂРёСЋС‚ РґР»СЏ СЃРѕР±Р°Рє
 
-кличка / имя
-возраст
-вес
-порода
+РєР»РёС‡РєР° / РёРјСЏ
+РІРѕР·СЂР°СЃС‚
+РІРµСЃ
+РїРѕСЂРѕРґР°
 
 
-класс животно
-поля....
+РєР»Р°СЃСЃ Р¶РёРІРѕС‚РЅРѕ
+РїРѕР»СЏ....
 
-мапа кличка - животное
+РјР°РїР° РєР»РёС‡РєР° - Р¶РёРІРѕС‚РЅРѕРµ
 
-insert - добавить
-search - найти
-delete - удалить
+insert - РґРѕР±Р°РІРёС‚СЊ
+search - РЅР°Р№С‚Рё
+delete - СѓРґР°Р»РёС‚СЊ
 
 */
 
@@ -70,73 +70,73 @@ int main()
 
 	while (true)
 	{
-		std::cout << "Введите команду: ";
+		std::cout << "Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ: ";
 		std::cin >> cod;
 		std::cin.ignore();
 
 		if (cod == "insert")
 		{
-			std::cout << "Введите кличку собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РєР»РёС‡РєСѓ СЃРѕР±Р°РєРё: ";
 			std::string nickname;
 			std::cin >> nickname;
 
-			std::cout << "Введите возраст собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РІРѕР·СЂР°СЃС‚ СЃРѕР±Р°РєРё: ";
 			std::cin >> dog.age;
 
-			std::cout << "Введите вес собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РІРµСЃ СЃРѕР±Р°РєРё: ";
 			std::cin >> dog.weight;
 
-			std::cout << "Введите породу собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РїРѕСЂРѕРґСѓ СЃРѕР±Р°РєРё: ";
 			std::cin >> dog.breed;
 
 			Shelter[nickname] = dog;
 
 			std::ofstream f(history_name, std::ios::app);
-			f << "insert кличка собаки " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+			f << "insert РєР»РёС‡РєР° СЃРѕР±Р°РєРё " << nickname << ", РІРѕР·СЂР°СЃС‚ " << dog.age << " Р»РµС‚" << ", РІРµСЃ " << dog.weight << " РєРі" << ", РїРѕСЂРѕРґР° " << dog.breed << std::endl;
 			f.close();
 		}
 		else if (cod == "search")
 		{
-			std::cout << "Введите кличку собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РєР»РёС‡РєСѓ СЃРѕР±Р°РєРё: ";
 			std::string nickname;
 			std::cin >> nickname;
 
 			if (Shelter.contains(nickname) == true)
 			{
-				std::cout << "Найдена собака - : " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+				std::cout << "РќР°Р№РґРµРЅР° СЃРѕР±Р°РєР° - : " << nickname << ", РІРѕР·СЂР°СЃС‚ " << dog.age << " Р»РµС‚" << ", РІРµСЃ " << dog.weight << " РєРі" << ", РїРѕСЂРѕРґР° " << dog.breed << std::endl;
 
 				std::ofstream f(history_name, std::ios::app);
-				f << "search нашли собаку " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+				f << "search РЅР°С€Р»Рё СЃРѕР±Р°РєСѓ " << nickname << ", РІРѕР·СЂР°СЃС‚ " << dog.age << " Р»РµС‚" << ", РІРµСЃ " << dog.weight << " РєРі" << ", РїРѕСЂРѕРґР° " << dog.breed << std::endl;
 				f.close();
 			}
 			else
 			{
-				std::cout << "такой саби нет" << std::endl;
+				std::cout << "С‚Р°РєРѕР№ СЃР°Р±Рё РЅРµС‚" << std::endl;
 
 				std::ofstream f(history_name, std::ios::app);
-				f << "search такой саби нет " << std::endl;
+				f << "search С‚Р°РєРѕР№ СЃР°Р±Рё РЅРµС‚ " << std::endl;
 			}			
 		}
 		else if (cod == "delete")
 		{
-			std::cout << "Введите кличку собаки: ";
+			std::cout << "Р’РІРµРґРёС‚Рµ РєР»РёС‡РєСѓ СЃРѕР±Р°РєРё: ";
 			std::string nickname;
 			std::cin >> nickname;
 
 			if (Shelter.contains(nickname))
 			{
-				Shelter.erase(nickname); // удаляет из мапы значение
-				std::cout << "Удалена собака из базы." << std::endl;
+				Shelter.erase(nickname); // СѓРґР°Р»СЏРµС‚ РёР· РјР°РїС‹ Р·РЅР°С‡РµРЅРёРµ
+				std::cout << "РЈРґР°Р»РµРЅР° СЃРѕР±Р°РєР° РёР· Р±Р°Р·С‹." << std::endl;
 
 				std::ofstream f(history_name, std::ios::app);
-				f << "delete - Удалена собака из базы. " << std::endl;
+				f << "delete - РЈРґР°Р»РµРЅР° СЃРѕР±Р°РєР° РёР· Р±Р°Р·С‹. " << std::endl;
 				f.close();
 			}
 			else
 			{
-				std::cout << "Ошибка, такой собаки нет." << std::endl;
+				std::cout << "РћС€РёР±РєР°, С‚Р°РєРѕР№ СЃРѕР±Р°РєРё РЅРµС‚." << std::endl;
 				std::ofstream f(history_name, std::ios::app);
-				f << "Ошибка, такой собаки нет." << std::endl;
+				f << "РћС€РёР±РєР°, С‚Р°РєРѕР№ СЃРѕР±Р°РєРё РЅРµС‚." << std::endl;
 				f.close();
 			}
 		}
@@ -146,13 +146,13 @@ int main()
 		}
 		else
 		{
-			std::cout << "Неверная команда!\n";
+			std::cout << "РќРµРІРµСЂРЅР°СЏ РєРѕРјР°РЅРґР°!\n";
 			continue;
 		}
 
 	}
 
-	// записать весь справочник
+	// Р·Р°РїРёСЃР°С‚СЊ РІРµСЃСЊ СЃРїСЂР°РІРѕС‡РЅРёРє
 	std::ofstream o_sprav(sprav);
 	for (auto& item : Shelter)
 	{
