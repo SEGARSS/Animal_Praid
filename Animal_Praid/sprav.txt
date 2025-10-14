@@ -1,0 +1,12 @@
+-858993460 -858993460 
+15 10 Ovcharka
+7 11 Hasi
+15 10 Ovcharka
+7 18 dvorniaga
+15 10 Ovcharka
+Lesua
+15 10 Ovcharka
+Puma
+15 10 Ovcharka
+Tuzik
+15 10 Ovcharka

@@ -47,6 +47,26 @@ int main()
 	std::string cod;
 
 	std::string history_name = "history.txt";
+	std::string sprav = "sprav.txt";
+
+	std::ifstream i_sprav(sprav);
+	if (i_sprav.is_open())
+	{
+		while (i_sprav.eof() == false)
+		{
+			std::string nickname;
+
+			std::getline(i_sprav, nickname);
+
+			if (nickname == "")
+			{
+				continue;
+			}
+
+			Shelter[nickname] = dog;
+		}
+	}
+	i_sprav.close();
 
 	while (true)
 	{
@@ -72,8 +92,53 @@ int main()
 			Shelter[nickname] = dog;
 
 			std::ofstream f(history_name, std::ios::app);
-			f << "insert кличка собаки " << nickname << ", возраст " << dog.age << ", вес " << dog.weight << ", порода " << dog.breed << std::endl;
+			f << "insert кличка собаки " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
 			f.close();
+		}
+		else if (cod == "search")
+		{
+			std::cout << "Введите кличку собаки: ";
+			std::string nickname;
+			std::cin >> nickname;
+
+			if (Shelter.contains(nickname) == true)
+			{
+				std::cout << "Найдена собака - : " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+
+				std::ofstream f(history_name, std::ios::app);
+				f << "search нашли собаку " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+				f.close();
+			}
+			else
+			{
+				std::cout << "такой саби нет" << std::endl;
+
+				std::ofstream f(history_name, std::ios::app);
+				f << "search такой саби нет " << std::endl;
+			}			
+		}
+		else if (cod == "delete")
+		{
+			std::cout << "Введите кличку собаки: ";
+			std::string nickname;
+			std::cin >> nickname;
+
+			if (Shelter.contains(nickname))
+			{
+				Shelter.erase(nickname); // удаляет из мапы значение
+				std::cout << "Удалена собака из базы." << std::endl;
+
+				std::ofstream f(history_name, std::ios::app);
+				f << "delete - Удалена собака из базы. " << std::endl;
+				f.close();
+			}
+			else
+			{
+				std::cout << "Ошибка, такой собаки нет." << std::endl;
+				std::ofstream f(history_name, std::ios::app);
+				f << "Ошибка, такой собаки нет." << std::endl;
+				f.close();
+			}
 		}
 		else if (cod == "exit")
 		{
@@ -86,6 +151,15 @@ int main()
 		}
 
 	}
+
+	// записать весь справочник
+	std::ofstream o_sprav(sprav);
+	for (auto& item : Shelter)
+	{
+		o_sprav << item.first << std::endl;
+		o_sprav << dog.age << " " << dog.weight << " " << dog.breed << std::endl;
+	}
+	o_sprav.close();
 
 	return 0;
 }
