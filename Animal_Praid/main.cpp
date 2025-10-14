@@ -157,6 +157,7 @@ int main()
 	for (auto& item : Shelter)
 	{
 		o_sprav << item.first << std::endl;
+		//o_sprav << item.second << std::endl; - не работает
 		o_sprav << dog.age << " " << dog.weight << " " << dog.breed << std::endl;
 	}
 	o_sprav.close();
