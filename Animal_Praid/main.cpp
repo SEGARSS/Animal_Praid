@@ -24,7 +24,7 @@ delete - удалить
 
 */
 
-
+std::map<std::string, class Dog> Shelter;
 //-------------------------------------------------------------------------------------------------
 class Dog
 {
@@ -52,9 +52,7 @@ public:
 
 	int age;
 	int weight;
-	std::string breed;
-
-	std::map<std::string, class Dog> Shelter;
+	std::string breed;	
 };
 //-------------------------------------------------------------------------------------------------
 int main()
@@ -82,7 +80,7 @@ int main()
 			}
 
 			dog.reading(i_sprav);
-			dog.Shelter[nickname] = dog;
+			Shelter[nickname] = dog;
 		}
 	}
 	i_sprav.close();
@@ -108,7 +106,7 @@ int main()
 			std::cout << "Введите породу собаки: ";
 			std::cin >> dog.breed;
 
-			dog.Shelter[nickname] = dog;
+			Shelter[nickname] = dog;
 
 			std::cout << "Добавлена. " << std::endl;
 
@@ -122,7 +120,7 @@ int main()
 			std::string nickname;
 			std::cin >> nickname;
 
-			if (dog.Shelter.contains(nickname) == true)
+			if (Shelter.contains(nickname) == true)
 			{
 				std::cout << "Найдена собака - : " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
 
@@ -144,9 +142,9 @@ int main()
 			std::string nickname;
 			std::cin >> nickname;
 
-			if (dog.Shelter.contains(nickname))
+			if (Shelter.contains(nickname))
 			{
-				dog.Shelter.erase(nickname); // удаляет из мапы значение
+				Shelter.erase(nickname); // удаляет из мапы значение
 				std::cout << "Удалена собака из базы." << std::endl;
 
 				std::ofstream f(history_name, std::ios::app);
@@ -181,7 +179,7 @@ int main()
 
 	// записать весь справочник
 	std::ofstream o_sprav(sprav);
-	for (const auto& item : dog.Shelter) 
+	for (const auto& item : Shelter) 
 	{
 		o_sprav << item.first << std::endl;// записываем кличку
 		item.second.record(o_sprav);   // записываем данные собаки
