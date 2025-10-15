@@ -58,8 +58,7 @@ public:
 int main()
 {
 	setlocale(LC_ALL, "ru");
-
-	Dog dog;
+	
 	std::string cod;
 
 	std::string history_name = "history.txt";
@@ -71,6 +70,7 @@ int main()
 	{
 		while (!i_sprav.eof()) 
 		{
+			Dog dog;
 			std::string nickname;
 			std::getline(i_sprav, nickname);
 
@@ -93,6 +93,8 @@ int main()
 
 		if (cod == "insert")
 		{
+			Dog dog;
+
 			std::cout << "Введите кличку собаки: ";
 			std::string nickname;
 			std::cin >> nickname;
@@ -116,6 +118,8 @@ int main()
 		}
 		else if (cod == "search")
 		{
+			Dog dog;
+
 			std::cout << "Введите кличку собаки: ";
 			std::string nickname;
 			std::cin >> nickname;
