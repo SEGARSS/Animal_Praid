@@ -30,6 +30,7 @@ class Dog
 {
 public:
 	Dog()
+	: age(0), weight(0), breed("")
 	{
 	}
 
@@ -118,18 +119,16 @@ int main()
 		}
 		else if (cod == "search")
 		{
-			Dog dog;
-
 			std::cout << "Введите кличку собаки: ";
 			std::string nickname;
 			std::cin >> nickname;
 
 			if (Shelter.contains(nickname) == true)
 			{
-				std::cout << "Найдена собака - : " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+				std::cout << "Найдена собака - : " << nickname << ", возраст " << Shelter[nickname].age << " лет" << ", вес " << Shelter[nickname].weight << " кг" << ", порода " << Shelter[nickname].breed << std::endl;
 
 				std::ofstream f(history_name, std::ios::app);
-				f << "search нашли собаку " << nickname << ", возраст " << dog.age << " лет" << ", вес " << dog.weight << " кг" << ", порода " << dog.breed << std::endl;
+				f << "search нашли собаку " << nickname << ", возраст " << Shelter[nickname].age << " лет" << ", вес " << Shelter[nickname].weight << " кг" << ", порода " << Shelter[nickname].breed << std::endl;
 				f.close();
 			}
 			else
